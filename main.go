@@ -84,7 +84,12 @@ func main() {
 		token, err := initSecContext(host, challenge)
 		challenge.Release()
 		if err != nil {
-			log.Fatal(err)
+			gssErr, ok := err.(*gssapi.Error)
+			if ok && gssErr.Major == gssapi.GSS_S_BAD_MECH {
+				log.Fatal("Could not find usable Kerberos ticket - your TGT may have expired (hint: try kinit)")
+			} else {
+				log.Fatal(err)
+			}
 		}
 
 		request := &http.Request{
