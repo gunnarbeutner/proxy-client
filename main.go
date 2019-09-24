@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
-	"github.com/apcera/gssapi"
-	"github.com/apcera/gssapi/spnego"
+	"github.com/gunnarbeutner/gssapi"
+	"github.com/gunnarbeutner/gssapi/spnego"
 	"github.com/jessevdk/go-flags"
 	"io"
 	"log"
